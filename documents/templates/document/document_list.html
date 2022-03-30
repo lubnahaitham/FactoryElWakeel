@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+   <div class="col-12">
+            <div class="card-header" style="background-color:#0B5ED7">
+
+
+                <h2 style="color:white">Document List</h2>
+             </div>
+             <br>
+            <table class="table">
+                <thead  style="background-color:#2072bb">
+                    <tr  class="col-10">
+                        <th>
+                            <input type="checkbox" name="check" id="check">
+                        </th>
+
+                        <th scope="col"style="color:white">Document ID</th>
+                        <th scope="col"style="color:white">Document Name</th>
+                        <th scope="col"style="color:white">Document Type</th>
+
+                        <th scope="col"style="color:white">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in document_list %}
+                    <tr>
+                        <td scope="row">
+                            <input type="checkbox" name="check" id="check">
+                        </td>
+                        <td>{{document.document_id}}</td>
+                        <td>{{document.document_name}}</td>
+                        <td>{{document.document_type}}</td>
+                        <td>
+                            <a href="{% url 'document:document_update' document.id %}" class="btn text-secondary px-0">
+                                <i class="far fa-edit fa-lg"></i>
+                            </a>
+
+                            <a href="{% url 'document:document_view' document.id %}" class="btn text-secondary px-0">
+                                <i class="fas fa-eye fa-lg"></i>
+                            </a>
+                             <a href="{% url 'document:document_pdf' document.id %}" class="btn text-secondary px-0">
+                                <i class="fa-solid fa-file-pdf fa-lg"></i>
+                            </a>
+
+                            <form action="{% url 'document:document_delete' document.id %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn">
+                                    <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+
+                                </button>
+                            </form>
+                            </td>
+                    </tr>
+
+                    {% endfor %}
+                </tbody>
+        </table>
+    </div>
+</div>
+</main>
+
+    {% endblock content %}
+
+
+

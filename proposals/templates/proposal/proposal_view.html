@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block custom_css %}
+<style type="text/css">
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+</style>
+{% endblock custom_css %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div class="col-12">
+        <div class="card-header" style="background-color:#0B5ED7">
+            <h2 style="color:white">Proposal View</h2>
+        </div>
+    <div class="card-body">
+    </div>
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Proposal ID: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ proposal_view.id }} " readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client ID: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ client_views.id }} " readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>ClientPersonal-ID :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ client_views.client_personal_id }}" readonly>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client Name:</label>
+                        <input type="text" class="form-control form-rounded" value="{{ client_views.client_name }}" readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Client Mobile :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ client_views.client_mobile }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Proposal Status: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ proposal_view.proposal_status }} " readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Proposal Validity Date: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ proposal_view.proposal_date }} " readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Proposal Amount: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ proposal_view.proposal_amount }} " readonly>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label>Client Address :</label>
+                        <input type="text" name="pos" class="form-control form-rounded" value="{{ client_views.client_address }},
+{{ client_views.client_province }}, {{ client_views.client_nghood }}, {{ client_views.client_pobox }}"
+                               readonly>
+                    </div>
+                </div>
+
+<br>
+
+                    <table class="table">
+                        <thead style="background-color:#2072bb">
+                        <tr class="col-10">
+                            <th>
+                                <input type="checkbox" name="check" id="check">
+                            </th>
+                            <th scope="col" style="color:white">Item Type</th>
+                            <th scope="col" style="color:white">Number Of Types</th>
+                            <th scope="col" style="color:white">Item Details</th>
+                            <th scope="col" style="color:white">Estimated Width</th>
+                            <th scope="col" style="color:white">Estimated Height</th>
+                            <th scope="col" style="color:white">Final Width</th>
+                            <th scope="col" style="color:white">Final Height</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% if  proposal_view.fn_width != proposal_view.es_width and proposal_view.fn_height != proposal_view.es_height %}
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                            <td>{{ proposal_view.item_type }}</td>
+                            <td>{{ proposal_view.no_items }}</td>
+                            <td>{{ proposal_view.item_details }}</td>
+                            <td>{{ proposal_view.es_width }}</td>
+                            <td>{{ proposal_view.es_height }}</td>
+                           <td style="color:red;">{{ proposal_view.fn_width }}</td>
+                            <td  style="color:red;">{{ proposal_view.fn_height }}</td>
+
+                            </tr>
+                            {% else %}
+                           <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                            <td>{{ proposal_view.item_type }}</td>
+                            <td>{{ proposal_view.no_items }}</td>
+                            <td>{{ proposal_view.item_details }}</td>
+                            <td>{{ proposal_view.es_width }}</td>
+                            <td>{{ proposal_view.es_height }}</td>
+                            <td>{{ proposal_view.fn_width }}</td>
+                            <td>{{ proposal_view.fn_height }}</td>
+
+                        </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+
+
+
+            <table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Created By</th>
+                    <th scope="col" style="color:white">Created date</th>
+                    <th scope="col" style="color:white">Update By</th>
+                    <th scope="col" style="color:white">UpdateDate</th>
+                </tr>
+                </thead>
+
+            <tbody>
+                    <tr>
+                        <td scope="row"></td>
+                        <td>{{ proposal_view.created_by}}</td>
+                        <td>{{ proposal_view.created_date}}</td>
+                        <td>{{ proposal_view.updated_by}}</td>
+                        <td>{{ proposal_view.updated_date}}</td>
+                    </tr>
+                    </tbody>
+            </table>
+            </div>
+        </div>
+
+</main>
+
+
+{% endblock %}

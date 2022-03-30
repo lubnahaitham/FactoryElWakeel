@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+      {% block custom_css %}
+        <style type="text/css">
+            .form-rounded {
+                border-radius: 1rem;
+            }
+
+        </style>
+    {% endblock custom_css %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="col-12">
+        <div class="card-header" style="background-color:#0B5ED7">
+            <h2 style="color:white">Client View</h2>
+        </div>
+        <div class="card-body">
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <label>Client ID: </label>
+                <input type="text" class="form-control form-rounded" value="{{ client_view.id }} " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>{%  trans "Client Name:" %}</label>
+              <input type="text" name="client_name" class="form-control form-rounded"  value="{{ client_view.client_name }}" readonly>
+
+            </div>
+            <div class="col-md-4">
+                <label>ClientPersonal-ID :</label>
+                <input type="text" class="form-control form-rounded" value="{{ client_view.client_personal_id }}" readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Client Home-Tel: </label>
+                <input type="text" class="form-control form-rounded" value="{{ client_view.client_home_tel }} " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Client Office-Tel: </label>
+                <input type="text" class="form-control form-rounded" value="{{ client_view.client_office_tel }} " readonly>
+            </div>
+            <div class="col-md-4">
+                <label>Client Mobile :</label>
+                <input type="text" class="form-control form-rounded" value="{{ client_view.client_mobile }}" readonly>
+            </div>
+
+
+            <div class="col-md-8">
+                <label>Client Address :</label>
+                <input type="text" name="pos" class="form-control form-rounded" value="{{ client_view.client_address }},
+{{ client_view.client_province }}, {{ client_view.client_nghood }}, {{ client_view.client_pobox }}"
+                       readonly>
+            </div>
+        </div>
+        &nbsp;
+        <table class="table">
+            <thead style="background-color:#2072bb">
+            <tr class="col-10">
+                <th>
+                    <input type="checkbox" name="check" id="check">
+                </th>
+                <th scope="col" style="color:white">Proposal ID</th>
+                <th scope="col" style="color:white">Client ID</th>
+                <th scope="col" style="color:white">Client Name</th>
+                <th scope="col" style="color:white">Proposal Date</th>
+                <th scope="col" style="color:white">Proposal Amount</th>
+                <th scope="col" style="color:white">Proposal Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td scope="row">
+                    <input type="checkbox" name="check" id="check">
+                </td>
+                <td>{{ proposal_views.id }}</td>
+                <td>{{ client_view.id }}</td>
+                <td>{{ client_view.client_name }}</td>
+                <td>{{ proposal_views.proposal_date }}</td>
+                <td>{{ proposal_views.proposal_amount }}</td>
+                <td>{{ proposal_views.proposal_status }}</td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+        <table class="table">
+            <thead style="background-color:#2072bb">
+            <tr class="col-10">
+                <th>
+                    <input type="checkbox" name="check" id="check">
+                </th>
+                <th scope="col" style="color:white">Created By</th>
+                <th scope="col" style="color:white">Created date</th>
+                <th scope="col" style="color:white">Update By</th>
+                <th scope="col" style="color:white">UpdateDate</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td scope="row"></td>
+                <td>{{ client_view.created_by }}</td>
+                <td>{{ client_view.created_date }}</td>
+                <td>{{ client_view.updated_by }}</td>
+                <td>{{ client_view.updated_date }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
+       </main>
+
+{% endblock %}

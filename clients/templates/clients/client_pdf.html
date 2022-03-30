@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+    <style>
+    body{
+        margin-left: 10px;
+    }
+        table {
+            border-collapse: collapse;
+            padding: 1px;
+             margin-left: 5px;
+        {#width: 100%#}
+        }
+
+        td, th {
+            border: black solid 1px;
+            text-align: left;
+            padding: 6px;
+            font-size: 12px;
+            {#width: 200px;#}
+        }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                    <h2>Client Data</h2>
+                    <tr>
+                        <th scope="col">Client ID</th>
+                        <th scope="col">Client Code</th>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Client Home Telephone</th>
+                        <th scope="col">Client Office Telephone</th>
+                        <th scope="col">Client Mobile</th>
+                        <th scope="col">Client Address</th>
+
+                    </thead>
+                    <tbody>
+
+
+                    <tr>
+                        <td>   {{ client_pdf.id }}</td>
+
+                        <td>  {{ client_pdf.client_personal_id }} </td>
+                        <td> {{ client_pdf.client_name }}</td>
+                        <td>    {{ client_pdf.client_home_tel }} </td>
+                        <td>  {{ client_pdf.client_office_tel }} </td>
+                        <td> {{ client_pdf.client_mobile }} </td>
+                        <td>{{ client_pdf.client_address }}, {{ client_pdf.client_province }}, {{ client_pdf.client_nghood }}, {{ client_pdf.client_pobox }}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                    <tr>
+
+                        <th scope="col">Contact Name</th>
+                        <th scope="col">Contact Code</th>
+                        <th scope="col">Contact Mobile</th>
+                        <th scope="col">Created By</th>
+                        <th scope="col">Created Date</th>
+                        <th scope="col">Updated By</th>
+                        <th scope="col">Updated Date</th>
+
+
+                    </thead>
+                    <tbody>
+
+
+                    <tr>
+
+                        <td>{{ client_pdf.contact_name }}</td>
+                        <td>{{ client_pdf.contact_id }}</td>
+                        <td>{{ client_pdf.contact_mobile }}</td>
+                        <td>{{ client_pdf.created_by }}</td>
+                        <td>{{ client_pdf.created_date }}</td>
+                        <td>{{ client_pdf.updated_by }}</td>
+                        <td>{{ client_pdf.updated_date }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                    <h2>Proposal Data</h2>
+
+                    <tr>
+
+                        <th scope="col">Proposal ID</th>
+                        <th scope="col"> Proposal Amount</th>
+                        <th scope="col">Proposal Date</th>
+                        <th scope="col">Proposal Status</th>
+
+
+                    </thead>
+                    <tbody>
+
+
+                    <tr>
+
+                        <td>{{ proposal_pdf.id }}</td>
+                        <td>{{ proposal_pdf.proposal_amount }}</td>
+                        <td>{{ proposal_pdf.proposal_date }}</td>
+                        <td>{{ proposal_pdf.proposal_status }}</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock content %}
+
+
+

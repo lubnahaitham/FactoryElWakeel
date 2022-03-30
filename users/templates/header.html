@@ -1,0 +1,98 @@
+{% load static %}
+{% load i18n %}
+
+{% blockcontent %}
+
+
+  {% block custom_css %}
+        <style type="text/css" media="all">
+            @media print {
+                @page {
+                    size: 5.5in 8.5in;
+                    size: landscape;
+
+
+                }
+
+                #btnPrint {
+                    display: none !important;
+                }
+
+                body {
+                    height: 100%;
+                    width: 100%;
+                }
+
+
+
+  .row {
+                display: flex;
+                margin-left: -5px;
+                margin-right: -5px;
+            }
+ .col-md-4 {
+    width: 33%;
+  }
+
+ nav {
+     display: none !important;
+ }
+
+
+ ul, li {
+     display: none !important;
+ }
+
+ .fluid-container{
+     display: none !important;
+ }
+            }
+
+
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+
+
+
+
+        </style>
+    {% endblock custom_css %}
+
+<div class="fluid-container">
+    <nav class="navbar" id="nav">
+
+        <ul class="navbar-nav">
+            <!--  <li class="nav-item ">-->
+            <!--  <a class="nav-link" href="#"><i class=" icon-2x icon-border fa fa-envelope icons-header" ></i></a>-->
+            <!--</li>-->
+            <li class="nav-item ">
+                <a class="nav-link" href="javascript:history.back()"><i
+                        class=" icon-2x icon-border icon-chevron-sign-left icons-header"></i></a>
+            </li>
+
+            <li class="nav-item">
+                <form action="{% url 'set_language' %}" method="post" class="nav-link">{% csrf_token %}
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+                    {% if LANGUAGE_CODE == 'ar' %}
+                        <button class="icon-border icons-header" style="font-size:15px" type='submit' name='language'
+                                value='en'>
+                            <span class="label"></span>English
+                        </button>
+                    {% else %}
+                        <button class="icon-border icons-header" style="font-size:15px" type='submit' name='language'
+                                value='ar'>
+                            <span class="label"></span>عربي
+                        </button>
+                    {% endif %}
+                </form>
+            </li>
+
+        </ul>
+
+        <!--</div>-->
+    </nav>
+</div>
+{% endblock %}

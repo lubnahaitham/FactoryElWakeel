@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <style>
+    body{
+        width: 200px;
+    }
+        table {
+            border-collapse: collapse;
+            padding: 1px;
+        {#width: 100%#}
+        }
+
+        td, th {
+            border: black solid 1px;
+            text-align: left;
+            padding: 6px;
+            font-size: 12px;
+            {#width: 200px;#}
+        }
+    </style>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <br>
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                    <h2>Client Data</h2>
+                    <tr>
+                        <th scope="col">Client ID</th>
+                        <th scope="col">Client Name</th>
+                        <th scope="col">Client Address</th>
+
+                    </thead>
+                    <tbody>
+
+
+                    <tr>
+                        <td>   {{ client_pdf.id }}</td>
+                        <td> {{ client_pdf.client_name }}</td>
+                        <td>{{ client_pdf.client_address }}, {{ client_pdf.client_province }}, {{ client_pdf.client_nghood }}, {{ client_pdf.client_pobox }}</td>
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+        <br>
+
+
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+
+                <table class="table">
+                    <thead>
+                                        <h2>Contract And Project Data</h2>
+
+                    <tr>
+
+                    <th scope="col">Project ID</th>
+
+                        <th scope="col">Contract ID</th>
+
+                    </thead>
+                    <tbody>
+
+
+                    <tr>
+
+                                           <td>{{ project_pdf.id }}</td>
+
+                        <td>{{ contract_pdf.id }}</td>
+
+
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    <br>
+
+
+
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+
+        <table class="table">
+            <thead>
+                                <h2>Task Data</h2>
+
+            <tr>
+
+
+                <th scope="col">Task ID</th>
+                <th scope="col">Task Code</th>
+                <th scope="col">Task Name</th>
+                <th scope="col">Task Item Type</th>
+                <th scope="col">Task No. Items</th>
+                <th scope="col">Task Item Details</th>
+            </thead>
+            <tbody>
+
+
+            <tr>
+
+
+                <td>{{ task_pdf.id }}</td>
+                <td>{{ task_pdf.task_id }}</td>
+                <td>{{ task_pdf.task_name }}</td>
+                <td>{{ task_pdf.item_type }}</td>
+                <td>{{ task_pdf.no_items }}</td>
+                <td>{{ task_pdf.item_details }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+    <div class="col-md-4">
+
+        <table class="table">
+            <thead>
+            <tr>
+
+
+                <th scope="col">Task Design</th>
+                <th scope="col">Task Final Width</th>
+                <th scope="col">Task Final Height</th>
+                <th scope="col">Task Status</th>
+                <th scope="col">Sales</th>
+                <th scope="col">Project Manager</th>
+
+            </thead>
+            <tbody>
+
+
+            <tr>
+
+
+                <td style="width: 188px">{{ task_pdf.img }}</td>
+                <td>{{ task_pdf.fn_width }}</td>
+                <td>{{ task_pdf.fn_height }}</td>
+                <td>{{ task_pdf.task_status }}</td>
+                <td>{{ task_pdf.sales_id }}</td>
+                <td>{{ task_pdf.project_manager_id }}</td>
+
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+
+            <table class="table">
+                <thead>
+                <tr>
+
+
+                    <th scope="col">Task Start Date</th>
+                    <th scope="col">Task End Date</th>
+                    <th scope="col">Task Delivery Date</th>
+                    <th scope="col"> Created By</th>
+                    <th scope="col">Created Date</th>
+                </thead>
+                <tbody>
+
+
+                <tr>
+
+
+                    <td>{{ task_pdf.start_date }}</td>
+                    <td>{{ task_pdf.end_date }}</td>
+                    <td>{{ task_pdf.task_delivery_date }}</td>
+                    <td>{{ task_pdf.created_by }}</td>
+                    <td>{{ task_pdf.created_date }}</td>
+
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+{% endblock content %}
+
+
+

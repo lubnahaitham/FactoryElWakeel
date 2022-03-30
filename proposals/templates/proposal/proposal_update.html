@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{% block custom_css %}
+        <style type="text/css">
+            .form-rounded {
+                border-radius: 1rem;
+            }
+
+        </style>
+    {% endblock custom_css %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div class="col-12">
+    <!-- enter div class="card" -->
+
+            <div class="card-header" style="background-color:#0B5ED7">
+               <h2 style="color:white">Proposal Update</h2>
+            </div>
+
+                <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{form.item_type|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.no_items|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.es_width|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.es_height|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.fn_width|as_crispy_field}}
+                        </div>
+                        <div class="col-md-6">
+                            {{form.fn_height|as_crispy_field}}
+                        </div>
+                         <div class="col-md-6">
+                                    {{ form.created_by|as_crispy_field }}
+                                </div>
+                         <div class="col-md-6">
+                                <label>Created Date: </label>
+                                <input type="date" class="form-control form-rounded" name="created_date">
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form.updated_by|as_crispy_field }}
+                                </div>
+
+
+                                <div class="col-md-6">
+                                <label>Updated Date: </label>
+                                <input type="date" class="form-control form-rounded" name="updated_date">
+                                </div>
+
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg"><i class="fa-solid fa-bookmark"></i>
+                                        save</button>
+                                        <a href="{% url 'proposal:proposal_list' %}" class="btn btn-primary btn-block btn-lg float_right"><i class="fa-solid fa-rectangle-xmark"></i>
+
+                                            Cancel</a>
+                                  </div>
+                        </div>
+            </form>
+
+            </div>
+            </div>
+
+
+</main>
+
+{% endblock content %}

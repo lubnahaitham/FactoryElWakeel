@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block custom_css %}
+<style type="text/css">
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+</style>
+{% endblock custom_css %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="col-12">
+            <div class="card-header" style="background-color:#0B5ED7">
+                <h2 style="color:white">Task Create</h2>
+            </div>
+            <div class="card-body">
+            </div>
+
+            <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Project Code : </label>
+                        <input type="text" class="form-control form-rounded" value="{{ project_data.project_id }}"
+                               readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Contract :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_to_join.id }}"
+                               readonly>
+
+                    </div>
+                    <div class="col-md-4">
+                        <label>Contract Item-Type :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_to_join.item_type }}"
+                               readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Proposal: :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.id }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ client_to_join.id }}" readonly>
+                    </div>
+
+
+                </div>
+
+            </form>
+
+            <br>
+
+            <form role="form" id="form-container" method="post" autocomplete="off" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ task_formset.management_form }}
+                {% for form in task_formset %}
+                <div class="bird-form">
+                    <table class="table">
+
+                        <tbody>
+
+                        <tr>
+
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                            <td>
+
+                                <label>Task ID: </label>
+                                <input type="text" class="form-control form-rounded" name="task_id">
+                            </td>
+                            <td>
+
+                                <label>Task Name: </label>
+                                <input type="text" class="form-control form-rounded" name="task_name">
+                            </td>
+
+                            <td>{{form.task_status|as_crispy_field}}</td>
+                            <td>
+
+                                <label>Task Delivery Date: </label>
+                                <input type="date" class="form-control form-rounded" name="task_delivery_date">
+                            </td>
+
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+
+                              <td>
+                            <label>Item Type:</label>
+                            <input type="text" class="form-control form-rounded" name="item_type">
+                        </td>
+
+                        <td>
+                            <label>Number Of Items:</label>
+                            <input type="text" class="form-control form-rounded" name="no_items">
+                        </td>
+                        <td>
+                            <label>Item Details:</label>
+                            <input type="text" class="form-control form-rounded" name="item_details">
+                        </td>
+
+
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                       <table class="table">
+
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            <input type="checkbox" name="check" id="check">
+                        </td>
+                        <td>
+
+                            <label>Final Width: </label>
+                            <input type="number" class="form-control form-rounded" name="fn_width">
+                        </td>
+
+                        <td>
+
+                            <label>Final Height: </label>
+                            <input type="number" class="form-control form-rounded" name="fn_height">
+                        </td>
+
+
+                        <td>
+
+                            <label>Design: </label>
+                            <input type="file" class="form-control form-rounded" name="img">
+                        </td>
+
+
+                    </tr>
+                    </tbody>
+
+                </table>
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <td scope="row"></td>
+                              <td>
+
+                            <label>End Date: </label>
+                            <input type="date" class="form-control form-rounded" name="end_date">
+                        </td>
+                            <td>{{ form.created_by|as_crispy_field }}</td>
+                            <td>
+
+                                <label>Created Date: </label>
+                                <input type="date" class="form-control" name="created_date">
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+
+                    <br>
+                </div>
+                {% endfor %}
+                {# <input type="hidden" name="form-TOTAL_FORMS" value="19" id="id_form-TOTAL_FORMS">#}
+                {# <input type="hidden" name="form-INITIAL_FORMS" value="7" id="id_form-INITIAL_FORMS">#}
+                {# <input type="hidden" name="form-MIN_NUM_FORMS" value="0" id="id_form-MIN_NUM_FORMS">#}
+                {# <input type="hidden" name="form-MAX_NUM_FORMS" value="1000" id="id_form-MAX_NUM_FORMS">#}
+                <button id="add-form" type="button">Add Another</button>
+
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-bookmark"></i>
+                        save
+                    </button>
+                    &nbsp;
+                    <a href="{% url 'task:task_list' %}" class="btn btn-primary btn-block float_right"><i
+                            class="fa-solid fa-list"></i>
+
+                        Back to list</a>
+                </div>
+
+            </form>
+
+            <script>
+                let birdForm = document.querySelectorAll(".bird-form")
+                let container = document.querySelector("#form-container")
+                let addButton = document.querySelector("#add-form")
+                let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+                let formNum = birdForm.length - 1 //Get the number of the last form on the page with zero-based indexing
+                addButton.addEventListener('click', addForm)
+
+                function addForm(e) {
+                    e.preventDefault()
+
+                    let newForm = birdForm[0].cloneNode(true) //Clone the bird form
+                    let formRegex = RegExp(`form-(\\d){1}-`, 'g') //Regex to find all instances of the form number
+
+                    formNum++ //Increment the form number
+                    newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`) //Update the new form to have the correct form number
+                    container.insertBefore(newForm, addButton) //Insert the new form at the end of the list of forms
+
+                    totalForms.setAttribute('value', `${formNum + 1}`) //Increment the number of total forms in the form management
+                }
+            </script>
+
+
+        </div>
+    </div>
+
+</main>
+
+
+{% endblock content %}

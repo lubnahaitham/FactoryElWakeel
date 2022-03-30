@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block custom_css %}
+<style type="text/css">
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+</style>
+{% endblock custom_css %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="col-12">
+                 <div class="card-header" style="background-color:#0B5ED7">
+            <h2 style="color:white">Contract View</h2>
+        </div>
+    <div class="card-body">
+    </div>
+
+        <div class="col-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Contract ID: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.id }} " readonly>
+                    </div>
+                     <div class="col-md-4">
+                        <label>Proposal ID: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.proposal.id }} " readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client ID: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.proposal.client.id }} " readonly>
+                    </div>
+                     <div class="col-md-4">
+                        <label>Client Name:</label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.proposal.client.client_name }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Client Personal-ID :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.proposal.client.client_personal_id }}" readonly>
+
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label>Client Mobile :</label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.proposal.client.client_mobile }}" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Contract Status: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.contract_status }} " readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Contract Date: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.contract_start_date }} " readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label>Contract Delivery Date: </label>
+                        <input type="text" class="form-control form-rounded" value="{{ contract_view.contract_delivery_date }} " readonly>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label>Client Address :</label>
+                        <input type="text" name="pos" class="form-control form-rounded" value="{{ contract_view.proposal.client.client_address }},
+{{ contract_view.proposal.client.client_province }}, {{ contract_view.proposal.client.client_nghood }}, {{ contract_view.proposal.client.client_pobox }}"
+                               readonly>
+                    </div>
+                </div>
+&nbsp;
+                    <table class="table">
+                        <thead style="background-color:#2072bb">
+                        <tr class="col-10">
+                            <th>
+                                <input type="checkbox" name="check" id="check">
+                            </th>
+                            <th scope="col" style="color:white">Item Type</th>
+                            <th scope="col" style="color:white">Number Of Types</th>
+                            <th scope="col" style="color:white">Item Details</th>
+                            <th scope="col" style="color:white">Final Width</th>
+                            <th scope="col" style="color:white">Final Height</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                            <td>{{ contract_view.item_type }}</td>
+                            <td>{{ contract_view.no_items }}</td>
+                            <td>{{ contract_view.item_details }}</td>
+                            <td>{{ contract_view.fn_width }}</td>
+                            <td>{{ contract_view.fn_height }}</td>
+
+                         </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+
+            <table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Created By</th>
+                    <th scope="col" style="color:white">Created date</th>
+                    <th scope="col" style="color:white">Update By</th>
+                    <th scope="col" style="color:white">UpdateDate</th>
+                </tr>
+                </thead>
+
+            <tbody>
+                    <tr>
+                        <td scope="row"></td>
+                        <td>{{ contract_view.created_by}}</td>
+                        <td>{{ contract_view.created_date}}</td>
+                        <td>{{ contract_view.updated_by}}</td>
+                        <td>{{ contract_view.updated_date}}</td>
+                    </tr>
+                    </tbody>
+            </table>
+
+        </div>
+
+</div>
+            </div>
+    </main>
+
+{% endblock %}

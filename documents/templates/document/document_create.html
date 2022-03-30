@@ -1,0 +1,662 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% block custom_css %}
+        <style type="text/css" media="all">
+            @media print {
+                @page {
+                    size: 5.5in 8.5in;
+                    size: A4;
+
+
+                }
+
+                @page {
+                    margin: 1cm
+                }
+
+                /* All margins set to 2cm */
+                @page :first {
+                    margin-top: 0cm    /* Top margin on first page 10cm */
+                }
+
+
+                br {
+                    display: none !important;
+                }
+
+                #btnPrint {
+                    display: none !important;
+                }
+
+                #checks {
+                    display: none !important;
+                }
+
+                body {
+                    height: 100%;
+                    width: 100%;
+                }
+
+                #save {
+                    display: none !important;
+                }
+
+                #back_list {
+                    display: none !important;
+                }
+
+                .row {
+                    display: flex;
+                    margin-left: -5px;
+                    margin-right: -5px;
+                }
+
+                .col-md-4 {
+                    width: 33%;
+                }
+
+                h2 {
+                    display: none !important;
+                }
+
+                .card-header {
+                    display: none !important;
+                }
+
+                .card-body {
+                    display: none !important;
+                }
+            }
+
+
+            * {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box;
+            }
+
+            .row {
+                display: flex;
+                margin-left: -5px;
+                margin-right: -5px;
+            }
+
+.form-rounded {
+        border-radius: 1rem;
+    }
+
+        </style>
+    {% endblock custom_css %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="col-12">
+                <div class="card-header" style="background-color:#0B5ED7">
+                    <h2 style="color:white">Document Create</h2>
+                </div>
+                <div class="card-body">
+                </div>
+
+                <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <label>Client ID : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Client Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.client_personal_id }}"
+                                   readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Client Name : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.client_name }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Client Home Telephone : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.client_home_tel }}"
+                                   readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Client Office Telephone : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.client_office_tel }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Client Mobile : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.client_mobile }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Client Address : </label>
+                            <input type="text" class="form-control form-rounded"
+                                   value="{{ client_to_join.client_address }}, {{ client_to_join.client_province }}, {{ client_to_join.client_nghood }}, {{ client_to_join.client_pobox }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contact Name : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.contact_name }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contact Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.contact_id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contact Mobile : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.contact_mobile }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.created_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.created_date }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.updated_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ client_to_join.updated_date }}" readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label>Proposal ID : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.proposal_id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Item Type : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.item_type }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal No. Items : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.no_items }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Proposal Item Details : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.item_details }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Design : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.img }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Estimated Width : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.es_width }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Estimated Height : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.es_height }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Final Width : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.fn_width }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Proposal Final Height : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.fn_height }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Proposal Status : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.proposal_status }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.created_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.created_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.updated_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ proposal_to_join.updated_date }}"
+                                   readonly>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label>Contract ID : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.contract_id }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Contract Item Type : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.item_type }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Contract No. Items : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.no_items }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Contract Item Details : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.item_details }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Design : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.img }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Contract Final Width : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.fn_width }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Final Height : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.fn_height }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Start Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.contract_start_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Delivery Date : </label>
+                            <input type="text" class="form-control form-rounded"
+                                   value="{{ contract_to_join.contract_delivery_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.created_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.created_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.updated_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ contract_to_join.updated_date }}"
+                                   readonly>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label>Project ID : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.project_id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Name : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.project_name }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Project Item Type : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.item_type }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Project No. Items : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.no_items }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Project Item Details : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.item_details }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Design : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.img }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Project Final Width : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.fn_width }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Final Height : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.fn_height }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Status : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.project_status }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Start Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.start_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project End Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.end_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Plan Delivery Date : </label>
+                            <input type="text" class="form-control form-rounded"
+                                   value="{{ project_to_join.project_plan_delivery_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Delivery Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.project_delivery_date }}"
+                                   readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Contract Start Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.contract_start_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Contract Delivery Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.contract_delivery_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Sales : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.sales }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Manager : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.project_manager }}"
+                                   readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Created By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.created_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.created_date }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.updated_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Updated Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ project_to_join.updated_date }}" readonly>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Task ID : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Task Code : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.task_id }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Task Name : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.task_name }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Task Item Type : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.item_type }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Task No. Items : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.no_items }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Task Item Details : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.item_details }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Task Design : </label>
+                            <input type="text" class="form-control" value="{{ task_data.img }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Task Final Width : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.fn_width }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Task Final Height : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.fn_height }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label>Task Status : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.task_status }}" readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Task Start Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.start_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Task End Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.end_date }}"
+                                   readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Task Delivery Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.task_dlv_date }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Sales : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.sales_id }}"
+                                   readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Project Manager : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.project_manager_id }}"
+                                   readonly>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Created By : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.created_by }}" readonly>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Created Date : </label>
+                            <input type="text" class="form-control form-rounded" value="{{ task_data.created_date }}" readonly>
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+
+                        <table class="table">
+
+                            <tbody>
+
+                            <tr>
+                                <td scope="row" id="checks">
+                                    <input type="checkbox" name="check" id="check">
+                                </td>
+                                <td>
+
+                            <label>Document ID: </label>
+                            <input type="text" class="form-control form-rounded" name="document_id">
+                        </td>
+
+                                         <td>
+
+                            <label>Document Name: </label>
+                            <input type="text" class="form-control form-rounded" name="document_name">
+                        </td>
+
+                                         <td>
+
+                            <label>Document Type: </label>
+                            <input type="text" class="form-control form-rounded" name="document_type">
+                        </td>
+
+
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                       <div class="row">
+
+                        <table class="table">
+
+                            <tbody>
+
+                            <tr>
+                                <td scope="row" id="checks">
+                                    <input type="checkbox" name="check" id="check">
+                                </td>
+                                <td>
+
+                                <td>{{ form.created_by|as_crispy_field }}</td>
+
+                                <td>
+
+                                    <label>Created Date: </label>
+                                    <input type="date" class="form-control form-rounded" name="created_date">
+                                </td>
+
+                                <td>
+
+                                    <label>Updated Date: </label>
+                                    <input type="date" class="form-control form-rounded" name="updated_date">
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button id="btnPrint" class="hidden-print">
+                            Print
+                        </button>
+                        <script>
+                            const $btnPrint = document.querySelector("#btnPrint");
+
+                            $btnPrint.addEventListener("click", () => {
+                                window.print();
+                            });
+                        </script>
+
+                        <button href="{% url 'document:document_list' %}" type="submit" class="btn btn-primary btn-block btn-lg"
+                                id="save">
+                            <i class="fa-solid fa-bookmark"></i>
+                            save
+                        </button>
+                        &nbsp;
+                        <a href="{% url 'document:document_list' %}" class="btn btn-primary btn-block btn-lg float_right"
+                           id="back_list"><i
+                                class="fa-solid fa-list"></i>
+
+                            Back to list</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+{% endblock content %}
+
+

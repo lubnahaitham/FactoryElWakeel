@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block custom_css %}
+<style type="text/css">
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+</style>
+{% endblock custom_css %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div class="col-12">
+        <div class="card-header" style="background-color:#0B5ED7">
+            <h2 style="color:white">Task View</h2>
+        </div>
+            <div class="card-body">
+            </div>
+
+            <div class="row">
+                 <div class="col-md-4">
+                    <label>Project ID: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ task_view.project.id }} " readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Contract ID: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ task_view.project.contract.id }} " readonly>
+                </div> 
+               
+
+                <div class="col-md-4">
+                    <label>Task ID :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ task_view.id }}"readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Task Name :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ task_view.task_name }}"readonly>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Task Delivery Date :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ task_view.task_delivery_date }}"readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Task Status :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ task_view.task_status }}"readonly>
+                </div>
+               <div class="col-md-8">
+                    <label>Client Address :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ task_view.project.contract.proposal.client.client_address }},
+{{ task_view.project.contract.proposal.client.client_province }}, {{ task_view.project.contract.proposal.client.client_nghood }}, {{ task_view.project.contract.proposal.client.client_pobox }}"
+                           readonly>
+                </div> 
+            </div>
+            &nbsp;
+            <table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Item Type</th>
+                    <th scope="col" style="color:white">Number Of Types</th>
+                    <th scope="col" style="color:white">Item Details</th>
+                    <th scope="col" style="color:white">Final Width</th>
+                    <th scope="col" style="color:white">Final Height</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td scope="row">
+                        <input type="checkbox" name="check" id="check">
+                    </td>
+                    <td>{{ task_view.item_type }}</td>
+                    <td>{{ task_view.no_items }}</td>
+                    <td>{{ task_view.item_details }}</td>
+                    <td>{{ task_view.fn_width }}</td>
+                    <td>{{ task_view.fn_height }}</td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+            <table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Start Date</th>
+                    <th scope="col" style="color:white">End Date</th>
+                    <th scope="col" style="color:white">Design</th>
+                    
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td scope="row">
+                        <input type="checkbox" name="check" id="check">
+                    </td>
+                    <td>{{ task_view.start_date }}</td>
+                    <td>{{ task_view.end_date }}</td>
+                    <td>{{ task_view.img }}</td>
+           
+
+                </tr>
+
+                </tbody>
+            </table>
+<table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Sales</th>
+                    <th scope="col" style="color:white">Project Manager</th>
+
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td scope="row"></td>
+                    <td>{{ task_view.sales_id }}</td>
+                    <td>{{ task_view.project_manager_id }}</td>
+
+                </tr>
+                </tbody>
+            </table>
+          
+
+            <table class="table">
+                <thead style="background-color:#2072bb">
+                <tr class="col-10">
+                    <th>
+                        <input type="checkbox" name="check" id="check">
+                    </th>
+                    <th scope="col" style="color:white">Created By</th>
+                    <th scope="col" style="color:white">Created date</th>
+                 
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td scope="row"></td>
+                    <td>{{ project_view.created_by }}</td>
+                    <td>{{ project_view.created_date }}</td>
+            
+                </tr>
+                </tbody>
+            </table>
+
+
+          
+         
+        </div>
+
+    </div>
+
+
+
+</main>
+
+{% endblock %}

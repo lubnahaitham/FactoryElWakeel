@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% block custom_css %}
+<style type="text/css">
+    .form-rounded {
+        border-radius: 1rem;
+    }
+
+</style>
+{% endblock custom_css %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div class="col-12">
+        <div class="card-header" style="background-color:#0B5ED7">
+            <h2 style="color:white">Project View</h2>
+        </div>
+            <div class="card-body">
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Project ID: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.id }} " readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Contract ID: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.contract.id }} " readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Client ID :</label>
+                    <input type="text" class="form-control form-rounded" value="{{ client_view.id }}" readonly>
+
+                </div>
+                <div class="col-md-4">
+                    <label>Project Name:</label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.project_name }}" readonly>
+                </div>
+
+                <div class="col-md-4">
+                    <label>Project Planned Date :</label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.project_plan_delivery_date }}" readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Project Status: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.project_status }} " readonly>
+                </div>
+
+
+                <div class="col-md-4">
+                    <label>Project Start Date: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.start_date }} " readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Project Delivery Date: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.project_delivery_date }} " readonly>
+                </div>
+
+
+                <div class="col-md-8">
+                    <label>Client Address :</label>
+                    <input type="text" name="pos" class="form-control form-rounded" value="{{ client_view.client_address }},
+{{ client_view.client_province }}, {{ client_view.client_nghood }}, {{ client_view.client_pobox }}"
+                           readonly>
+                </div>
+
+               
+            </div>
+            &nbsp
+
+
+            <table class="table">
+                            <thead style="background-color:#2072bb">
+                            <tr class="col-10">
+                                <th>
+                                    <input type="checkbox" name="check" id="check">
+                                </th>
+                                <th scope="col" style="color:white">Task ID</th>
+                                <th scope="col" style="color:white">Task Name</th>
+                                <th scope="col" style="color:white">Task Delivery Date</th>
+                                <th scope="col" style="color:white">Task Status</th>
+                                <th scope="col" style="color:white">Actions</th>
+
+
+            
+                            </tr>
+                            </thead>
+            
+                            <tbody>
+       {% for task_view in task_view %}
+
+                            <tr>
+
+                                <td scope="row"></td>
+
+                                <td>{{ task_view.id }}</td>
+                                <td>{{ task_view.task_name }}</td>
+                                <td>{{ task_view.task_delivery_date }}</td>
+                                <td>{{ task_view.task_status }}</td>
+                                <td>
+
+                                    <a href="{% url 'task:task_update' task_view.id %}" class="btn text-secondary px-0">
+                                        <i class="far fa-edit fa-lg"></i>
+                                    </a>
+
+                                    <a href="{% url 'task:task_view' task_view.id %}" class="btn text-secondary px-0">
+                                        <i class="fas fa-eye fa-lg"></i>
+                                    </a>
+
+                                    <form action="{% url 'task:task_delete'  task_view.id %}" method="post" class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn">
+                                            <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+
+                                        </button>
+                                    </form>
+
+                                   
+                                </td>
+
+
+
+                            </tr>
+                                           {%  endfor %}
+                            </tbody>
+                        </table>
+
+                        
+
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label>Sales: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.sales }} " readonly>
+                </div>
+                <div class="col-md-4">
+                    <label>Project Manager: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.project_manager }} " readonly>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-md-3">
+                <label>Created Date: </label>
+                <input type="text" class="form-control form-rounded" value="{{ project_view.created_date }} " readonly>
+            </div>
+                <div class="col-md-3">
+                    <label>Created By: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.created_by }} " readonly>
+                </div>
+                <div class="col-md-3">
+                    <label>Update Date: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.updated_date }} " readonly>
+                </div>
+                <div class="col-md-3">
+                    <label>Updated By: </label>
+                    <input type="text" class="form-control form-rounded" value="{{ project_view.updated_by }} " readonly>
+                </div>
+              
+         
+        </div>
+
+    </div>
+                </div>
+</main>
+{% endblock %}

@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% block custom_css %}
+        <style type="text/css">
+            .form-rounded {
+                border-radius: 1rem;
+            }
+
+        </style>
+    {% endblock custom_css %}
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="col-12">
+                <div class="card-header" style="background-color:#0B5ED7">
+                    <h2 style="color:white">Proposal Create</h2>
+                </div>
+                <div class="card-body">
+                </div>
+
+                    <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Client ID: </label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.id }} " readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>ClientPersonal-ID :</label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.client_personal_id }}"
+                                       readonly>
+
+                            </div>
+                            <div class="col-md-4">
+                                <label>Client Name:</label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.client_name }}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>ClientHome-Tel :</label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.client_home_tel }}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>ClientOffice-Tel :</label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.client_office_tel }}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Client Mobile :</label>
+                                <input type="text" class="form-control form-rounded" value="{{ client.client_mobile }}" readonly>
+                            </div>
+                            <div class="col-md-8">
+                                <label>Client Address :</label>
+                                <input type="text" name="pos" class="form-control form-rounded" value="{{ client.client_address }},
+{{ client.client_province }}, {{ client.client_nghood }}, {{ client.client_pobox }}"
+                                       readonly>
+                            </div>
+
+
+                        </div>
+
+                    </form>
+
+            <br>
+
+            <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table class="table">
+
+                    <tbody>
+
+
+                    <tr>
+                        <td scope="row">
+                            <input type="checkbox" name="check" id="check">
+                        </td>
+                         <td>
+                                <label>Proposal ID: </label>
+                                <input type="text" class="form-control form-rounded" name="proposal_id">
+                            </td>
+
+                                <td>
+                                <label>Item Type: </label>
+                                <input type="text" class="form-control form-rounded" name="item_type">
+                            </td>
+
+                                <td>
+                                <label>Number Of Items: </label>
+                                <input type="number" class="form-control form-rounded" name="no_items">
+                            </td>
+
+                                <td>
+                                <label>Item Details: </label>
+                                <input type="text" class="form-control form-rounded" name="item_details">
+                            </td>
+
+                                   <td>
+                                <label>Design: </label>
+                                <input type="file" class="form-control form-rounded" name="img">
+                            </td>
+
+
+
+                    </tr>
+
+                    </tbody>
+                </table>
+                <table class="table">
+
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                            <input type="checkbox" name="check" id="check">
+                        </td>
+
+                                   <td>
+                                <label>Estimated Width: </label>
+                                <input type="number" class="form-control form-rounded" name="es_width">
+                            </td>
+
+
+                                   <td>
+                                <label>Estimated Height: </label>
+                                <input type="number" class="form-control form-rounded" name="es_height">
+                            </td>
+
+
+                                   <td>
+                                <label>Final Width: </label>
+                                <input type="number" class="form-control form-rounded" name="fn_width">
+                            </td>
+
+                          <td>
+                                <label>Final Height: </label>
+                                <input type="number" class="form-control form-rounded" name="fn_height">
+                            </td>
+
+
+                        <td>{{ form.proposal_status|as_crispy_field }}</td>
+
+
+                    </tr>
+                    </tbody>
+
+                </table>
+                <table class="table">
+
+                    <tbody>
+                    <tr>
+                        <td scope="row"></td>
+                        <td>{{ form.created_by|as_crispy_field }}</td>
+
+                       <td> <label>Created Date: </label>
+
+                            <input type="date" class="form-control form-rounded" name="created_date">
+                    </td>
+                            <td>{{ form.updated_by|as_crispy_field }}</td>
+                                 <td>
+
+                                <label>Updated Date: </label>
+                                <input type="date" class="form-control form-rounded"  name="updated_date">
+                            </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fa-solid fa-bookmark"></i>
+                        save
+                    </button>
+                    &nbsp;
+                    <a href="{% url 'proposal:proposal_list' %}" class="btn btn-primary btn-block float_right"><i
+                            class="fa-solid fa-list"></i>
+
+                        Back to list</a>
+                </div>
+                <div>
+                </div>
+
+            </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock content %}

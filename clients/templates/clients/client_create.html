@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% block custom_css %}
+        <style type="text/css">
+            .form-rounded {
+                border-radius: 1rem;
+            }
+
+        </style>
+    {% endblock custom_css %}
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="col-12">
+                <div class="card-header" style="background-color:#0B5ED7">
+                    <h2 style="color:white">Client Create</h2>
+                </div>
+                <div class="card-body">
+
+                </div>
+
+                <form role="form" action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <table class="table">
+                        <thead style="background-color:#2072bb">
+
+                        <tbody>
+
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                            <td>
+                                <label>Client Name: </label>
+                                <input type="text" class="form-control form-rounded" name="client_name">
+                            </td>
+                               <td>
+                                <label>Client Personal ID: </label>
+                                <input type="text" class="form-control form-rounded" name="client_personal_id">
+                            </td>
+
+                                    <td>
+                                <label>Client Home Telephone: </label>
+                                <input type="text" class="form-control form-rounded" name="client_home_tel">
+                            </td>
+
+                                <td>
+                                <label>Client Office Telephone: </label>
+                                <input type="text" class="form-control form-rounded" name="client_office_tel">
+                            </td>
+
+                                        <td>
+                                <label>Client Mobile: </label>
+                                <input type="text" class="form-control form-rounded" name="client_mobile">
+                            </td>
+
+
+                        </tr>
+
+                        </tbody>
+                    </table>
+
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+                             <td>
+                                <label>Client Address: </label>
+                                <input type="text" class="form-control form-rounded" name="client_address">
+                            </td>
+                                 <td>
+                                <label>Client Province: </label>
+                                <input type="text" class="form-control form-rounded" name="client_province">
+                            </td>
+             <td>
+                                <label>Client Neighborhood: </label>
+                                <input type="text" class="form-control form-rounded" name="client_nghood">
+                            </td>
+
+                                      <td>
+                                <label>Client Phone-Box: </label>
+                                <input type="text" class="form-control form-rounded" name="client_pobox">
+                            </td>
+
+
+
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <td scope="row">
+                                <input type="checkbox" name="check" id="check">
+                            </td>
+
+                              <td>
+                                <label>Contact Name: </label>
+                                <input type="text" class="form-control form-rounded" name="contact_name">
+                            </td>
+
+                             <td>
+                                <label>Contact ID: </label>
+                                <input type="text" class="form-control form-rounded" name="contact_id">
+                            </td>
+
+                                    <td>
+                                <label>Contact Mobile: </label>
+                                <input type="text" class="form-control form-rounded" name="contact_mobile">
+                            </td>
+
+
+                        </tr>
+                        </tbody>
+
+                    </table>
+
+                    <table class="table">
+
+                        <tbody>
+                        <tr>
+                            <td scope="row"></td>
+
+                            <td>{{ form.created_by|as_crispy_field }}</td>
+
+                            <td>
+                                <label>Created Date: </label>
+                                <input type="date" class="form-control form-rounded" name="created_date">
+                            </td>
+
+                            <td>{{ form.updated_by|as_crispy_field }}</td>
+
+                            <td>
+                                <label>Updated Date: </label>
+                                <input type="date" class="form-control form-rounded" name="updated_date">
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fa-solid fa-bookmark"></i>
+                            save
+                        </button>
+                        &nbsp;
+                        <a href="{% url 'client:client_list' %}" class="btn btn-primary btn-block btn-lg float_right"><i
+                                class="fa-solid fa-list"></i>
+
+                            Back to list</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+{% endblock content %}

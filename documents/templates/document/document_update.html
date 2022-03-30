@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <div class="col-12">
+        <!-- enter div class="card" -->
+                <div class="card-header" style="background-color:#0B5ED7">
+                    <h2 style="color:white">Document Update</h2>
+                </div>
+                                <div class="card-body">
+
+            </div>
+                    <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{form.document_id|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6">
+                                {{form.document_name|as_crispy_field}}
+                            </div>
+                            <div class="col-md-6">
+                                {{form.document_type|as_crispy_field}}
+                            </div>
+
+                            <div class="col-md-6">
+
+
+                                <label>Created Date: </label>
+                                <input type="date" class="form-control" name="created_date">
+
+                            </div>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-primary btn-block btn-lg"><i
+                                        class="fa-solid fa-bookmark"></i>
+                                    save
+                                </button>
+                                <a href="{% url 'document:document_list' %}"
+                                   class="btn btn-primary btn-block btn-lg float_right"><i
+                                        class="fa-solid fa-rectangle-xmark"></i>
+
+                                    Cancel</a>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</main>
+
+{% endblock content %}
+
+
+
+
