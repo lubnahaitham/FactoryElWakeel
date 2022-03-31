@@ -20,8 +20,8 @@ class Contract(models.Model):
     fn_width = models.FloatField(null=True, blank=True)
     fn_height = models.FloatField(null=True, blank=True)
     img = models.ImageField(upload_to="images/", null=True, blank=True)
-    contract_start_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
-    contract_delivery_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    contract_start_date = models.DateField(null=True, blank=True)
+    contract_delivery_date = models.DateField(auto_now_add=False, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='create_contract', null=True,
                                    blank=True)
     created_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)

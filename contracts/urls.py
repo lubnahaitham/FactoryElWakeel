@@ -1,5 +1,6 @@
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import contract_list, contract_view, contract_create, contract_update, contract_delete, \
     pdf_generation_contract, contract_project_create
 app_name = 'contract'
@@ -18,3 +19,5 @@ urlpatterns = [
    
 
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

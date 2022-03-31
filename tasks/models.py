@@ -22,10 +22,10 @@ class Task(models.Model):
     item_details = models.CharField(max_length=255, null=True, blank=True)
     fn_width = models.FloatField(null=True, blank=True)
     fn_height = models.FloatField(null=True, blank=True)
-    task_delivery_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    task_delivery_date = models.DateField(null=True, blank=True)
     task_status = models.CharField(max_length=255, choices=TASK_STATUS, null=True, blank=True)
-    start_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    end_date = models.DateTimeField(auto_now_add=False, null=True, blank=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     img = models.ImageField(upload_to="images/", null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='create_task', null=True,
                                    blank=True)

@@ -67,7 +67,7 @@
     <img src="{% static 'images/Logo-TR.png' %}" alt="AdminLTE Logo"
          class="bi me-2 " style=" height: calc(calc(4.5rem + 3px) * .6);
       width: 16%; margin-left: 10px" style="position: fixed;">
-    {#    {% include 'header.html' %}#}
+      {% include 'header.html' %}
 </header>
 
 <!--sidebar starts here-->
@@ -81,6 +81,7 @@
                 <i class="fa-solid fa-chart-line"></i>
                 Dashboard
             </a>
+
 
             <ul class="sub-menu blank">
                 <li><a class="link_name" href="dashboard.html">Dashboard</a></li>

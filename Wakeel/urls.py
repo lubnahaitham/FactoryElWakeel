@@ -21,15 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
-    path('', include('clients.urls'), name='client'),
-    path('', include('contracts.urls'), name='contract'),
-    path('', include('documents.urls'), name='document'),
-    path('', include('projects.urls'), name='project'),
-    path('', include('proposals.urls'), name='proposal'),
-    path('', include('tasks.urls'), name='task'),
-    path('', include('users.urls'), name='user'),
-
-    path('admin/', admin.site.urls),
     ]
 
 urlpatterns += i18n_patterns(
@@ -40,7 +31,6 @@ urlpatterns += i18n_patterns(
     path('', include('proposals.urls'), name='proposal'),
     path('', include('tasks.urls'), name='task'),
     path('', include('users.urls'), name='user'),
-
     path('admin/', admin.site.urls),
 )
 

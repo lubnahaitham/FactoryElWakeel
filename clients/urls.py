@@ -1,5 +1,6 @@
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import client_list, client_view, client_create, client_update, \
     client_delete, proposal_client_create, pdf_generation_client
 
@@ -18,3 +19,5 @@ urlpatterns = [
     path('client/proposal/<int:id>/', proposal_client_create, name='proposal_client_create'),
 
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -10,15 +10,18 @@ from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db.models import Q
-from django.http import BadHeaderError, HttpResponse
+from django.http import BadHeaderError, HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string, get_template
 from django.utils.encoding import force_bytes
 
-
-# Create your views here.
 from users.decorators import unauthenticated_user
 
+from clients.models import Client
+from django.utils import translation
+
+
+# Create your views here.
 
 def dashboard(request):
     return render(request, 'dashboard.html')
@@ -77,3 +80,16 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('/login')
+
+
+# Language
+
+def selectlanguage(request):
+    if request.method == 'POST':  # check post
+        cur_language = translation.get_language()
+        lasturl = request.META.get('HTTP_REFERER')
+        lang = request.POST['language']
+        translation.activate(lang)
+        request.session[translation.LANGUAGE_SESSION_KEY] = lang
+        # return HttpResponse(lang)
+        return HttpResponseRedirect("" + lang)
