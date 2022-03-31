@@ -1,30 +1,32 @@
-from django.shortcuts import render
 from base64 import urlsafe_b64encode
 from collections import UserString
 from email import quoprimime
 
+from clients.models import Client
+from contracts.models import Contract
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordResetForm
 from django.contrib.auth.tokens import default_token_generator
+from django.core import serializers
 from django.core.mail import send_mail
-from django.db.models import Q
 from django.http import BadHeaderError, HttpResponse, JsonResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
-from django.template.loader import render_to_string, get_template
-from django.utils.encoding import force_bytes
-
-from users.decorators import unauthenticated_user
-
-from clients.models import Client
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
 from django.utils import translation
+from django.utils.encoding import force_bytes
+from documents.models import Document
+from projects.models import Project
+from proposals.models import Proposal
+from projects.models import Task
+from users.decorators import unauthenticated_user
 
 
 # Create your views here.
 
-def dashboard(request):
-    return render(request, 'dashboard.html')
+
+# def dashboard(request):
+#     return render(request, 'dashboard.html')
 
 
 def password_reset_request(request):
@@ -93,3 +95,17 @@ def selectlanguage(request):
         request.session[translation.LANGUAGE_SESSION_KEY] = lang
         # return HttpResponse(lang)
         return HttpResponseRedirect("" + lang)
+
+
+# Report
+def dashboard_with_pivot(request):
+    return render(request, 'dashboard_with_pivot.html', {})
+
+
+def pivot_data(request):
+    dataset = [*Client.objects.all(), *Proposal.objects.all(), *Contract.objects.all(), *Project.objects.all(),
+               *Task.objects.all(), *Document.objects.all()]
+    data = serializers.serialize('json', dataset)
+    return JsonResponse(data, safe=False)
+
+

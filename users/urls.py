@@ -3,12 +3,12 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from django.urls import path
 
-from .views import dashboard, loginPage, logoutUser
+from .views import loginPage, logoutUser, dashboard_with_pivot, pivot_data
 
 app_name = 'user'
 
 urlpatterns = [
-    path('', dashboard, name='dashboard'),
+    # path('home/', dashboard, name='dashboard'),
 
     # path('register/', views.registerPage, name="register"),
     path('login/', loginPage, name="login"),
@@ -34,6 +34,9 @@ urlpatterns = [
          auth_views.PasswordResetCompleteView.as_view(
              template_name="accounts/password_reset_done.html"),
          name="password_reset_complete"),
+
+    path('', dashboard_with_pivot, name='dashboard_with_pivot'),
+    path('data', pivot_data, name='pivot_data'),
 
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

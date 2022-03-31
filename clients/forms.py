@@ -6,11 +6,11 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ClientForm(forms.ModelForm):
-    client_name = forms.CharField(label=_(u'Client Name'),
-                                  widget=forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                                "placeholder": "Enter Client Name"}))
-    client_personal_id = forms.CharField(label=_(u'Client Personal-ID'))
-    client_home_tel = forms.CharField(label=_('Client Home Telephone'))
+    # client_name = forms.CharField(label=_(u'Client Name'),
+    #                               widget=forms.TextInput(attrs={'class': 'form-control form-rounded',
+    #                                                             "placeholder": "Enter Client Name"}))
+    # client_personal_id = forms.CharField(label=_(u'Client Personal-ID'))
+    # client_home_tel = forms.CharField(label=_('Client Home Telephone'))
 
     client_personal_id = forms.CharField(validators=[validators.MinLengthValidator(4)],
                                          widget=forms.TextInput(attrs={'class': 'form-control form-rounded',
@@ -25,33 +25,33 @@ class ClientForm(forms.ModelForm):
                   'updated_by', 'updated_date']
         widgets = {
             'client_name': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                  "placeholder": "Enter Client Name"}),
+                                                  }),
             'client_home_tel': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                      "placeholder": "Enter Client Home Telephone"}),
+                                                      }),
             'client_office_tel': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                        "placeholder": "Enter Client Office Telephone"}),
+                                                        }),
             'client_mobile': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                    "placeholder": "Enter Client Mobile"}),
+                                                    }),
             'client_address': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                     "placeholder": "Enter Client Address"}),
+                                                     }),
             'client_province': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                      "placeholder": "Enter Client Province "}),
+                                                      }),
             'client_nghood': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                    "placeholder": "Enter Client NgHood "}),
+                                                    }),
             'client_pobox': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                   "placeholder": "Enter Client PoBox "}),
+                                                   }),
             'contact_name': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                   "placeholder": "Enter Contact Name "}),
+                                                   }),
             'contact_id': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                 "placeholder": "Enter Contact ID "}),
+                                                 }),
             'contact_mobile': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                     "placeholder": "Enter Contact Mobile "}),
-            'created_by': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                 "placeholder": "Enter Created BY "}),
-            'created_date': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                   "placeholder": "Enter Created Date "}),
-            'updated_by': forms.TextInput(attrs={'class': 'form-control form-rounded',
-                                                 "placeholder": "Enter Updated BY "}),
+                                                     }),
+            'created_by': forms.Select(attrs={'class': 'regDropDown form-rounded form-rounded',
+                                              }),
+            'created_date': forms.Select(attrs={'class': 'regDropDown form-rounded',
+                                                }),
+            'updated_by': forms.Select(attrs={'class': 'regDropDown form-rounded form-rounded',
+                                              }),
 
         }
 

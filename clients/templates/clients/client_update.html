@@ -70,10 +70,13 @@
                             {{ form.updated_by|as_crispy_field }}
                         </div>
 
-                        <div class="col-md-5">
-                            {{ form.created_date|as_crispy_field }}
+<!--                        <div class="col-md-5">-->
+<!--                            {{ form.created_date|as_crispy_field }}-->
+<!--                        </div>-->
+  <div class="col-md-5">
+                            <label>Created Date: </label>
+                            <input type="date" class="form-control form-rounded" name="created_date">
                         </div>
-
                         <div class="col-md-5">
                             <label>Updated Date: </label>
                             <input type="date" class="form-control form-rounded" name="updated_date">

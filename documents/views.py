@@ -11,7 +11,7 @@ from documents.forms import DocumentForm
 from documents.models import Document
 from projects.models import Project
 from proposals.models import Proposal
-from tasks.models import Task
+from projects.models import Task
 from users.decorators import allowed_users
 from xhtml2pdf import pisa
 from django.template.loader import get_template

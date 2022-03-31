@@ -1,0 +1,834 @@
+{% load static  %}
+<html lang="en">
+<head>
+    <meta charSet="UTF-8">
+    <title>Dashboard with Flexmonster</title>
+    <script src="https://cdn.flexmonster.com/flexmonster.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!--    <link rel="stylesheet" href="https://cdn.flexmonster.com/demo.css">-->
+
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
+    <style>
+        /* Charts Style  */
+
+        .fm-charts-color-1 {
+            fill: #ffa600 !important;
+        }
+
+        .fm-charts-color-2 {
+            fill: #7eae26 !important;
+        }
+
+        .fm-charts-color-3 {
+            fill: #00a45a !important;
+        }
+
+        .fm-charts-color-4 {
+            fill: #df3800 !important;
+        }
+
+        .fm-charts-color-5 {
+            fill: #e95800 !important;
+        }
+
+        .fm-charts-color-6 {
+            fill: #ffa600 !important;
+        }
+
+    </style>
+</head>
+<body>
+{% include 'menu1.html' %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    <div class="chartjs-size-monitor">
+        <div id="pivot-table-container" data-url="{% url 'user:pivot_data' %}"></div>
+
+        <div id="pivot-chart-container"></div>
+
+
+        <script>
+            function processData(dataset) {
+                var result = []
+                dataset = JSON.parse(dataset);
+                dataset.forEach(item => result.push(item.fields));
+                return result;
+            }
+
+            $.ajax({
+                url: $("#pivot-table-container").attr("data-url"),
+                dataType: 'json',
+                success: function (data) {
+                    new Flexmonster({
+                        container: "#pivot-table-container",
+                        componentFolder: "https://cdn.flexmonster.com/",
+                        width: "100%",
+                        height: 430,
+                        toolbar: true,
+                        report: {
+                            dataSource: {
+                                type: "json",
+                                data: processData(data),
+                                mapping: {
+                                    "client_name": {
+                                        "caption": "Client Name"
+                                    },
+                                    "client_personal_id": {
+                                        "caption": "Client Personal ID"
+                                    },
+                                    "client_home_tel": {
+                                        "caption": "Client Home Telephone",
+                                    },
+                                    "client_office_tel": {
+                                        "caption": "Client Office Telephone",
+                                    },
+                                    "client_mobile": {
+                                        "caption": "Client Mobile",
+                                    },
+                                    "client_address": {
+                                        "caption": "Client Address",
+                                    },
+                                    "client_province": {
+                                        "caption": "Client province",
+                                    },
+                                    "client_nghood": {
+                                        "caption": "Client Neighborhood",
+                                    },
+                                    "client_pobox": {
+                                        "caption": "Client Po-Box",
+                                    },
+                                    "contact_name": {
+                                        "caption": "Client Contact Name",
+                                    },
+                                    "contact_id": {
+                                        "caption": "Client Contact ID",
+                                    },
+                                    "contact_mobile": {
+                                        "caption": "Client Contact Mobile",
+                                    },
+                                    "created_by": {
+                                        "caption": "Client Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Client Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Client Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Client Updated Date",
+                                    },
+                                    /* Proposal */
+
+
+                                    "proposal_id": {
+                                        "caption": "Proposal ID"
+                                    },
+                                    "client": {
+                                        "caption": "Client In Proposal"
+                                    },
+                                    "proposal_status": {
+                                        "caption": "Proposal Status",
+                                    },
+                                    "proposal_date": {
+                                        "caption": "Proposal Date",
+                                    },
+                                    "proposal_amount": {
+                                        "caption": "Proposal Amount",
+                                    },
+                                    "item_type": {
+                                        "caption": "Proposal Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Proposal Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Proposal Item Details",
+                                    },
+                                    "es_width": {
+                                        "caption": "Proposal Estimate Width",
+                                    },
+                                    "es_height": {
+                                        "caption": "Proposal Estimate Height",
+                                    },
+                                    "fn_width": {
+                                        "caption": "Proposal Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Proposal Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Proposal Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Proposal Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Proposal Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Proposal Updated Date",
+                                    },
+
+                                    /* Contract */
+
+                                    "contract_id": {
+                                        "caption": "Contract ID"
+                                    },
+                                    "proposal": {
+                                        "caption": "Proposal In Contract"
+                                    },
+                                    "contract_status": {
+                                        "caption": "Contract Status",
+                                    },
+                                    "contract_start_date": {
+                                        "caption": "Contract Start Date",
+                                    },
+                                    "contract_delivery_date": {
+                                        "caption": "Contract Delivery Date",
+                                    },
+                                    "item_type": {
+                                        "caption": "Contract Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Contract Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Contract Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Contract Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Contract Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Contract Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Contract Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Contract Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Contract Updated Date",
+                                    },
+                                    /* Project */
+
+                                    "project_id": {
+                                        "caption": "Project ID"
+                                    },
+                                    "contract": {
+                                        "caption": "Contract In Project"
+                                    },
+                                    "project_name": {
+                                        "caption": "Project Name",
+                                    },
+                                    "project_status": {
+                                        "caption": "Project Status"
+                                    },
+                                    "start_date": {
+                                        "caption": "Start Date"
+                                    },
+                                    "end_date": {
+                                        "caption": "End Date"
+                                    },
+                                    "project_plan_delivery_date": {
+                                        "caption": "project Plan Delivery Date",
+                                    },
+                                    "project_delivery_date": {
+                                        "caption": "Project Delivery Date",
+                                    },
+                                    "contract_start_date": {
+                                        "caption": "Project Contract Start Date",
+                                    },
+                                    "contract_delivery_date": {
+                                        "caption": "Project Contract Delivery Date",
+                                    },
+
+                                    "sales": {
+                                        "caption": "Project Sales",
+                                    },
+                                    "project_manager": {
+                                        "caption": "Project Manager",
+                                    },
+                                    "item_type": {
+                                        "caption": "Project Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Project Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Project Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Project Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Project Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Project Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Project Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Project Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Project Updated Date",
+                                    },
+                                    /* Task */
+
+                                    "task_id": {
+                                        "caption": "Task ID"
+                                    },
+                                    "project": {
+                                        "caption": "Project In Task"
+                                    },
+                                    "task_name": {
+                                        "caption": "Task Name",
+                                    },
+                                    "task_status": {
+                                        "caption": "Task Status"
+                                    },
+                                    "start_date": {
+                                        "caption": "Task Start Date"
+                                    },
+                                    "end_date": {
+                                        "caption": "Task End Date"
+                                    },
+                                    "task_delivery_date": {
+                                        "caption": "Task Delivery Date",
+                                    },
+
+                                    "sales_id": {
+                                        "caption": "Task Sales",
+                                    },
+                                    "project_manager_id": {
+                                        "caption": "Task Project Manager",
+                                    },
+                                    "item_type": {
+                                        "caption": "Project Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Project Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Project Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Project Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Project Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Project Created By",
+                                    },
+
+                                    "created_date": {
+                                        "caption": "Project Created Date",
+                                    },
+
+                                    /* Document */
+
+                                    "document_id": {
+                                        "caption": "Document ID"
+                                    },
+                                    "task": {
+                                        "caption": "Task In Document"
+                                    },
+                                    "document_name": {
+                                        "caption": "Document Name",
+                                    },
+                                    "document_type": {
+                                        "caption": "Document Type"
+                                    },
+
+                                    "created_by": {
+                                        "caption": "Document Created By",
+                                    },
+
+                                    "created_date": {
+                                        "caption": "Document Created Date",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Document Updated By",
+                                    },
+                                }
+                            },
+                            "slice": {
+                                "rows": [{
+                                    "uniqueName": "client_name"
+                                },
+                                    // {
+                                    //     "uniqueName": "proposal_id"
+                                    // },
+                                    // {
+                                    //     "uniqueName": "contract_id"
+                                    // },
+                                    //   {
+                                    //     "uniqueName": "project_id"
+                                    // },
+
+                                ],
+                                "columns": [
+                                    {
+                                        "uniqueName": "client_personal_id"
+                                    },
+                                    {
+                                        "uniqueName": "proposal_id"
+                                    },
+                                    {
+                                        "uniqueName": "contract_id"
+                                    },
+                                    {
+                                        "uniqueName": "project_id"
+                                    },
+                                    {
+                                        "uniqueName": "task_id"
+                                    },
+                                     {
+                                        "uniqueName": "document_id"
+                                    },
+                                    {
+                                        "uniqueName": "[Measures]"
+                                    }
+                                ],
+                                "measures": [{
+                                    "uniqueName": "client_personal_id",
+                                    // "aggregation": "sum"
+                                },
+                                    {
+                                        "uniqueName": "proposal_id",
+                                        // "aggregation": "sum"
+
+                                    },
+                                    {
+                                        "uniqueName": "contract_id",
+                                    },
+                                    {
+                                        "uniqueName": "project_id",
+                                    },
+                                    {
+                                        "uniqueName": "task_id",
+                                    },
+
+                                      {
+                                        "uniqueName": "document_id",
+                                    },
+
+                                ]
+                            }
+                        }
+                    });
+
+                    new Flexmonster({
+                        container: "#pivot-chart-container",
+                        componentFolder: "https://cdn.flexmonster.com/",
+                        width: "100%",
+                        height: 430,
+                        //toolbar: true,
+                        report: {
+                            dataSource: {
+                                type: "json",
+                                data: processData(data),
+                                mapping: {
+                                    "client_name": {
+                                        "caption": "Client Name"
+                                    },
+                                    "client_personal_id": {
+                                        "caption": "Client Personal ID"
+                                    },
+                                    "client_home_tel": {
+                                        "caption": "Client Home Telephone",
+                                    },
+                                    "client_office_tel": {
+                                        "caption": "Client Office Telephone",
+                                    },
+                                    "client_mobile": {
+                                        "caption": "Client Mobile",
+                                    },
+                                    "client_address": {
+                                        "caption": "Client Address",
+                                    },
+                                    "client_province": {
+                                        "caption": "Client province",
+                                    },
+                                    "client_nghood": {
+                                        "caption": "Client Neighborhood",
+                                    },
+                                    "client_pobox": {
+                                        "caption": "Client Po-Box",
+                                    },
+                                    "contact_name": {
+                                        "caption": "Contact Name",
+                                    },
+                                    "contact_id": {
+                                        "caption": "Contact ID",
+                                    },
+                                    "contact_mobile": {
+                                        "caption": "Contact Mobile",
+                                    },
+                                    "created_by": {
+                                        "caption": "Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Updated Date",
+                                    },
+
+                                    /* Proposal */
+
+                                    "proposal_id": {
+                                        "caption": "Proposal ID"
+
+                                    },
+                                    "client": {
+                                        "caption": "Client In Proposal"
+                                    },
+                                    "proposal_status": {
+                                        "caption": "Proposal Status",
+                                    },
+                                    "proposal_date": {
+                                        "caption": "Proposal Date",
+                                    },
+                                    "proposal_amount": {
+                                        "caption": "Proposal Amount",
+                                    },
+                                    "item_type": {
+                                        "caption": "Proposal Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Proposal Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Proposal Item Details",
+                                    },
+                                    "es_width": {
+                                        "caption": "Proposal Estimate Width",
+                                    },
+                                    "es_height": {
+                                        "caption": "Proposal Estimate Height",
+                                    },
+                                    "fn_width": {
+                                        "caption": "Proposal Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Proposal Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Proposal Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Proposal Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Proposal Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Proposal Updated Date",
+                                    },
+
+                                    /* Contract */
+
+                                    "contract_id": {
+                                        "caption": "Contract ID"
+                                    },
+                                    "proposal": {
+                                        "caption": "Proposal In Contract"
+                                    },
+                                    "contract_status": {
+                                        "caption": "Contract Status",
+                                    },
+                                    "contract_start_date": {
+                                        "caption": "Contract Start Date",
+                                    },
+                                    "contract_delivery_date": {
+                                        "caption": "Contract Delivery Date",
+                                    },
+                                    "item_type": {
+                                        "caption": "Contract Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Contract Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Contract Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Contract Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Contract Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Contract Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Contract Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Contract Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Contract Updated Date",
+                                    },
+                                    /* Project */
+
+                                    "project_id": {
+                                        "caption": "Project ID"
+                                    },
+                                    "contract": {
+                                        "caption": "Contract In Project"
+                                    },
+                                    "project_name": {
+                                        "caption": "Project Name",
+                                    },
+                                    "project_status": {
+                                        "caption": "Project Status"
+                                    },
+                                    "start_date": {
+                                        "caption": "Start Date"
+                                    },
+                                    "end_date": {
+                                        "caption": "End Date"
+                                    },
+                                    "project_plan_delivery_date": {
+                                        "caption": "project Plan Delivery Date",
+                                    },
+                                    "project_delivery_date": {
+                                        "caption": "Project Delivery Date",
+                                    },
+                                    "contract_start_date": {
+                                        "caption": "Project Contract Start Date",
+                                    },
+                                    "contract_delivery_date": {
+                                        "caption": "Project Contract Delivery Date",
+                                    },
+
+                                    "sales": {
+                                        "caption": "Project Sales",
+                                    },
+                                    "project_manager": {
+                                        "caption": "Project Manager",
+                                    },
+                                    "item_type": {
+                                        "caption": "Project Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Project Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Project Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Project Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Project Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Project Created By",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Project Updated By",
+                                    },
+                                    "created_date": {
+                                        "caption": "Project Created Date",
+                                    },
+                                    "updated_date": {
+                                        "caption": "Project Updated Date",
+                                    },
+                                    /* Task */
+
+                                    "task_id": {
+                                        "caption": "Task ID"
+                                    },
+                                    "project": {
+                                        "caption": "Project In Task"
+                                    },
+                                    "task_name": {
+                                        "caption": "Task Name",
+                                    },
+                                    "task_status": {
+                                        "caption": "Task Status"
+                                    },
+                                    "start_date": {
+                                        "caption": "Task Start Date"
+                                    },
+                                    "end_date": {
+                                        "caption": "Task End Date"
+                                    },
+                                    "task_delivery_date": {
+                                        "caption": "Task Delivery Date",
+                                    },
+
+                                    "sales_id": {
+                                        "caption": "Task Sales",
+                                    },
+                                    "project_manager_id": {
+                                        "caption": "Task Project Manager",
+                                    },
+                                    "item_type": {
+                                        "caption": "Project Item Type",
+                                    },
+                                    "no_items": {
+                                        "caption": "Project Number Items",
+                                    },
+                                    "item_details": {
+                                        "caption": "Project Item Details",
+                                    },
+
+                                    "fn_width": {
+                                        "caption": "Project Final Width",
+                                    },
+                                    "fn_height": {
+                                        "caption": "Project Final Height",
+                                    },
+                                    "created_by": {
+                                        "caption": "Project Created By",
+                                    },
+
+                                    "created_date": {
+                                        "caption": "Project Created Date",
+                                    },
+    /* Document */
+
+                                    "document_id": {
+                                        "caption": "Document ID"
+                                    },
+                                    "task": {
+                                        "caption": "Task In Document"
+                                    },
+                                    "document_name": {
+                                        "caption": "Document Name",
+                                    },
+                                    "document_type": {
+                                        "caption": "Document Type"
+                                    },
+
+                                    "created_by": {
+                                        "caption": "Document Created By",
+                                    },
+
+                                    "created_date": {
+                                        "caption": "Document Created Date",
+                                    },
+                                    "updated_by": {
+                                        "caption": "Document Updated By",
+                                    },
+
+                                }
+
+                            },
+                            "slice": {
+                                "rows": [{
+                                    "uniqueName": "client_personal_id"
+                                },
+                                    {
+                                        "uniqueName": "proposal_id"
+                                    },
+
+                                    {
+                                        "uniqueName": "contract_id"
+                                    },
+                                    {
+                                        "uniqueName": "project_id"
+                                    },
+                                    {
+                                        "uniqueName": "task_id"
+                                    },
+                                     {
+                                        "uniqueName": "document_id"
+                                    },
+                                ],
+                                "columns": [{
+                                    "uniqueName": "[Measures]"
+                                }],
+                                "measures": [{
+                                    "uniqueName": "client_personal_id",
+                                    // "formula": "sum(\"client_personal_id\") + sum(\"proposal_id\")",
+                                    // "caption": "Client Name"
+                                },
+                                    {
+                                        "uniqueName": "proposal_id",
+                                        // "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
+                                        // "caption": "Client Name"
+                                    },
+
+                                    {
+                                        "uniqueName": "contract_id",
+                                        // "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
+                                        // "caption": "Client Name"
+                                    },
+                                    {
+                                        "uniqueName": "project_id",
+                                        // "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
+                                        // "caption": "Client Name"
+                                    },
+                                    {
+                                        "uniqueName": "task_id",
+                                        // "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
+                                        // "caption": "Client Name"
+                                    },
+                                     {
+                                        "uniqueName": "document_id",
+                                        // "formula": "sum(\"shipping_cost\") + sum(\"unit_price\")",
+                                        // "caption": "Client Name"
+                                    },
+
+                                ]
+                            },
+                            "options": {
+                                "viewType": "charts",
+                                "chart": {
+                                    "type": "pie"
+                                }
+                            }
+                        }
+                    });
+                }
+            });
+
+
+        </script>
+    </div>
+</main>
+</body>
+
+</html>

@@ -85,7 +85,7 @@ def client_create(request, id=0):
 @login_required(login_url='user:login')
 @allowed_users(allowed_roles=['sales', 'admin'])
 def client_update(request, id):
-    client = get_object_or_404(Client, pk=id)
+    client = Client.objects.get(pk=id)
     form = ClientForm(instance=client)
 
     if request.method == 'POST':

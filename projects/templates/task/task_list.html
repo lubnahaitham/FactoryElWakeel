@@ -37,17 +37,17 @@
 
 
                     <td>
-                        <a href="{% url 'task:task_update' task.id %}" class="btn text-secondary px-0">
+                        <a href="{% url 'project:task_update' task.id %}" class="btn text-secondary px-0">
                             <i class="far fa-edit fa-lg"></i>
                         </a>
 
-                        <a href="{% url 'task:task_view' task.id %}" class="btn text-secondary px-0">
+                        <a href="{% url 'project:task_view' task.id %}" class="btn text-secondary px-0">
                             <i class="fas fa-eye fa-lg"></i>
                         </a>
-                       <a href="{% url 'task:task_pdf' task.id %}" class="btn text-secondary px-0">
+                       <a href="{% url 'project:task_pdf' task.id %}" class="btn text-secondary px-0">
                                 <i class="fa-solid fa-file-pdf fa-lg"></i>
                             </a>
-                        <form action="{% url 'task:task_delete' task.id %}" method="post" class="d-inline">
+                        <form action="{% url 'project:task_delete' task.id %}" method="post" class="d-inline">
                             {% csrf_token %}
                             <button type="submit" class="btn">
                                 <i class="far fa-trash-alt fa-lg text-danger float-right"></i>

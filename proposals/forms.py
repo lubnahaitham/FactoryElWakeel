@@ -4,7 +4,9 @@ from .models import Proposal
 
 
 class ProposalForm(forms.ModelForm):
-    proposal_id = forms.CharField(validators=[validators.MinLengthValidator(4)])
+    proposal_id = forms.CharField(validators=[validators.MinLengthValidator(4)],
+                                  widget=forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                                                "placeholder": "Enter Proposal ID"}), )
 
     class Meta:
         model = Proposal
@@ -12,27 +14,27 @@ class ProposalForm(forms.ModelForm):
                   'proposal_amount', 'item_type', 'no_items',
                   'item_details', 'img', 'es_width', 'es_height', 'fn_width', 'fn_height',
                   'created_by', 'created_date', 'updated_by', 'updated_date']
-        # widgets = {
-        #     'item_type': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                         "placeholder": "Enter Item Type"}),
-        #     'no_items': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                        "placeholder": "Enter No Items "}),
-        #     'es_width': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                        "placeholder": "Enter ES Width"}),
-        #     'es_height': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                         "placeholder": "Enter Es Height "}),
-        #     'fn_width': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                        "placeholder": "Enter Final Width "}),
-        #     'fn_height': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                         "placeholder": "Enter Final Height "}),
-        #     'created_by': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                          "placeholder": "Enter Created BY "}),
-        #     'updated_by': forms.TextInput(attrs={'class': 'form-control form-rounded',
-        #                                          "placeholder": "Enter Updated BY "}),
-        #     'proposal_status': forms.ChoiceField(attrs={'class': 'form-control form-rounded',
-        #
-        #                                                 })
-        # }
+        widgets = {
+            'item_type': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                                "placeholder": "Enter Item Type"}),
+            'no_items': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                               "placeholder": "Enter No Items "}),
+            'es_width': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                               "placeholder": "Enter ES Width"}),
+            'es_height': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                                "placeholder": "Enter Es Height "}),
+            'fn_width': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                               "placeholder": "Enter Final Width "}),
+            'fn_height': forms.TextInput(attrs={'class': 'form-control form-rounded',
+                                                "placeholder": "Enter Final Height "}),
+            'created_by': forms.Select(attrs={'class': 'regDropDown form-rounded',
+                                                 "placeholder": "Enter Created BY "}),
+            'updated_by': forms.Select(attrs={'class': 'regDropDown form-rounded form-rounded',
+                                                 "placeholder": "Enter Updated BY "}),
+            'proposal_status': forms.Select(attrs={'class': 'regDropDown form-rounded',
+
+                                                        })
+        }
 
     def clean_proposal_id(self):
         proposal_id = self.cleaned_data['proposal_id']

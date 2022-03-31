@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from tasks.models import Task
+from projects.models import Task
 
 
 # Create your models here.

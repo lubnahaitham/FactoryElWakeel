@@ -100,15 +100,15 @@
                                 <td>{{ task_view.task_status }}</td>
                                 <td>
 
-                                    <a href="{% url 'task:task_update' task_view.id %}" class="btn text-secondary px-0">
+                                    <a href="{% url 'project:task_update' task_view.id %}" class="btn text-secondary px-0">
                                         <i class="far fa-edit fa-lg"></i>
                                     </a>
 
-                                    <a href="{% url 'task:task_view' task_view.id %}" class="btn text-secondary px-0">
+                                    <a href="{% url 'project:task_view' task_view.id %}" class="btn text-secondary px-0">
                                         <i class="fas fa-eye fa-lg"></i>
                                     </a>
 
-                                    <form action="{% url 'task:task_delete'  task_view.id %}" method="post" class="d-inline">
+                                    <form action="{% url 'project:task_delete'  task_view.id %}" method="post" class="d-inline">
                                         {% csrf_token %}
                                         <button type="submit" class="btn">
                                             <i class="far fa-trash-alt fa-lg text-danger float-right"></i>

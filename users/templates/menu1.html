@@ -1,7 +1,5 @@
 {% load static %}
 
-<!DOCTYPE html>
-<!-- Designined by CodingLab | www.youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
@@ -67,7 +65,11 @@
     <img src="{% static 'images/Logo-TR.png' %}" alt="AdminLTE Logo"
          class="bi me-2 " style=" height: calc(calc(4.5rem + 3px) * .6);
       width: 16%; margin-left: 10px" style="position: fixed;">
-      {% include 'header.html' %}
+{% include 'header.html' %}
+
+    <a class="nav-link " id='dash' aria-current="page" href="{% url 'user:logout' %}" style="color: black">
+                Logout
+            </a>
 </header>
 
 <!--sidebar starts here-->
@@ -77,14 +79,14 @@
     </div>
     <ul class="nav-links" id="navs">
         <li>
-            <a class="nav-link " id='dash' aria-current="page" href="{% url 'user:dashboard' %}" style="color: white">
+            <a class="nav-link " id='dash' aria-current="page" href="{% url 'user:dashboard_with_pivot' %}" style="color: white">
                 <i class="fa-solid fa-chart-line"></i>
                 Dashboard
             </a>
 
 
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="dashboard.html">Dashboard</a></li>
+                <li><a class="link_name" href="dashboard_with_pivot.html">Dashboard</a></li>
             </ul>
         </li>
 
@@ -145,7 +147,7 @@
 
         <hr style="color:white;margin-left: 10px;margin-right: 10px;"/>
         <li>
-            <a class="nav-link" href="{% url 'task:task_list' %}">
+            <a class="nav-link" href="{% url 'project:task_list' %}">
                 <i class="fa-solid fa-list-check"></i>
                 Tasks
             </a>
@@ -188,7 +190,7 @@
 
     <ul class="sub-menu blank">
         <li>
-            <a href="{% url 'task:task_list' %}" class="nav-link">
+            <a href="{% url 'project:task_list' %}" class="nav-link">
                 <i class="fa-solid fa-list-check"></i>
                 Tasks
             </a></li>

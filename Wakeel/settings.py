@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'contracts',
     'documents',
     'proposals',
-    'tasks',
     'projects',
     'users',
 

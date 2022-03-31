@@ -22,13 +22,8 @@
             <form action="" method="post" autocomplete="off" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="row">
-                    {#
-                    <div class="col-md-4">#}
-                        {# <label>Contract ID: </label>#}
-                        {# <input type="text" class="form-control form-rounded" value="{{ contract.id }} " readonly>#}
-                        {#
-                    </div>
-                    #}
+
+
                     <div class="col-md-4">
                         <label>Proposal ID: </label>
                         <input type="text" class="form-control form-rounded" value="{{ contract_data.id }} " readonly>
@@ -119,7 +114,7 @@
 
                         <td>
                             <label>Number Of Items:</label>
-                            <input type="text" class="form-control form-rounded" name="no_items">
+                            <input type="number" class="form-control form-rounded" name="no_items">
                         </td>
  <td>
                             <label>Item Details:</label>
@@ -127,7 +122,7 @@
                         </td>
  <td>
                             <label>Design:</label>
-                            <input type="text" class="form-control form-rounded" name="img">
+                            <input type="file" class="form-control form-rounded" name="img">
                         </td>
 
 

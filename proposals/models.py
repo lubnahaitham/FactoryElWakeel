@@ -14,7 +14,7 @@ class Proposal(models.Model):
     proposal_id = models.CharField(max_length=255, null=True, blank=True)
     client = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, blank=True)
     proposal_status = models.CharField(max_length=255, choices=PROPOSAL_STATUS, null=True, blank=True)
-    proposal_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    proposal_date = models.DateField(null=True, blank=True)
     proposal_amount = models.FloatField(null=True, blank=True)
     item_type = models.CharField(max_length=255, null=True, blank=True)
     no_items = models.CharField(max_length=255, null=True, blank=True)

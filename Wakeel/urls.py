@@ -29,7 +29,6 @@ urlpatterns += i18n_patterns(
     path('', include('documents.urls'), name='document'),
     path('', include('projects.urls'), name='project'),
     path('', include('proposals.urls'), name='proposal'),
-    path('', include('tasks.urls'), name='task'),
     path('', include('users.urls'), name='user'),
     path('admin/', admin.site.urls),
 )
